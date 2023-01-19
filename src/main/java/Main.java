@@ -25,16 +25,8 @@ public class Main {
                 }
         }
 
-        Collections.sort(citiesList, new Comparator<City>() {
-            @Override
-            public int compare(City o1, City o2) {
-                boolean bool = o1.getRegion().equals(o2.getRegion());
-                if (bool) {
-                    return o1.getName().compareTo(o2.getName());
-                }
-                return 1;
-            }
-        });
+        citiesList.sort(Comparator.comparing(City::getRegion)
+                .thenComparing(City::getName));
 
         System.out.println(citiesList.size());
         for (City city : citiesList) {
