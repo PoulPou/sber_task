@@ -28,12 +28,28 @@ public class Main {
         citiesList.sort(Comparator.comparing(City::getRegion)
                 .thenComparing(City::getName));
 
-        System.out.println(citiesList.size());
-        for (City city : citiesList) {
-            System.out.println(city.toString());
-        }
+        getMaxPopulationOfCity(citiesList);
+
+//        System.out.println(citiesList.size());
+//        for (City city : citiesList) {
+//            System.out.println(city.toString());
+//        }
         reader.close();
         is.close();
 
+    }
+
+    public static void getMaxPopulationOfCity(List<City> list){
+        int i = 0;
+        int position = 0;
+        int population = 0;
+        for (City c : list){
+            if (c.getPopulation()>population){
+                position = i;
+                population = c.getPopulation();
+            }
+            i++;
+        }
+        System.out.println("["+position+"] = "+population);
     }
 }
