@@ -28,7 +28,9 @@ public class Main {
         citiesList.sort(Comparator.comparing(City::getRegion)
                 .thenComparing(City::getName));
 
-        getMaxPopulationOfCity(citiesList);
+//        getMaxPopulationOfCity(citiesList);
+
+        countCityOfRegion(citiesList);
 
 //        System.out.println(citiesList.size());
 //        for (City city : citiesList) {
@@ -51,5 +53,19 @@ public class Main {
             i++;
         }
         System.out.println("["+position+"] = "+population);
+    }
+
+    public static void countCityOfRegion(List<City> list){
+        int countCity = 0;
+        String region = list.get(0).getRegion();
+        for (City c : list){
+            if (c.getRegion().equals(region)){
+                countCity++;
+            } else {
+                System.out.println(region + " - " + countCity);
+                countCity = 1;
+                region = c.getRegion();
+            }
+        }
     }
 }
